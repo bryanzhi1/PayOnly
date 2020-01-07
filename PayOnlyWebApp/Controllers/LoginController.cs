@@ -42,6 +42,7 @@ namespace PayOnlyWebApp.Controllers
 
             if (validCredentials == true)
             {
+                HttpContext.Session.SetString("AdminUser", loginID);
                 return RedirectToAction("Index", "Admin");
             }
 

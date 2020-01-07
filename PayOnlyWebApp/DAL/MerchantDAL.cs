@@ -175,12 +175,13 @@ namespace PayOnlyWebApp.DAL
         public bool CashRequest(int merchantID, string bankName, string accountName, string accountNumber, double amount)
         {
             SqlCommand cmd = new SqlCommand
-              ("INSERT INTO CashOutRequest (MerchantID, BankName, AccountName, AccountNumber, Amount) OUTPUT INSERTED.CashOutID VALUES(@merchantid, @bankname, @accname, @accnumber,@amt)", conn);
+              ("INSERT INTO CashOutRequest (MerchantID, BankName, AccountName, AccountNumber, Amount, Status) OUTPUT INSERTED.CashOutID VALUES(@merchantid, @bankname, @accname, @accnumber,@amt,@status)", conn);
             cmd.Parameters.AddWithValue("@merchantid", merchantID);
             cmd.Parameters.AddWithValue("@bankname", bankName);
             cmd.Parameters.AddWithValue("@accname", accountName);
             cmd.Parameters.AddWithValue("@accnumber", accountNumber);
             cmd.Parameters.AddWithValue("@amt", amount);
+            cmd.Parameters.AddWithValue("@status", "Pending");
             conn.Open();
             int CashOutID = (int)(cmd.ExecuteScalar());
             conn.Close();
