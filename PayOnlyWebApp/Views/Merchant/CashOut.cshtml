@@ -1,0 +1,31 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>CashOut</title>
+</head>
+<body>
+    <p>After submitting your cash-out request, your money should be in your account within 3 working days. Singapore accounts only.</p>
+    <form method="post" action="~/Merchant/Cashout">
+        Bank Name:
+        <input type="text" name="txtBankName" required />
+        <br /><br />
+        Name in Account:
+        <input type="text" name="txtAccName" required />
+        <br /><br />
+        Account Number (omit dashes):
+        <input type="text" name="txtAccNumber" required />
+        <br /><br />
+        Amount:
+        <input type="number" step="0.01" name="txtAmt" required />
+        <br /><br />
+        <input type="Submit" value="Submit" />
+</form>
+</body>
+</html>

@@ -1,0 +1,38 @@
+﻿@model IEnumerable<PayOnlyWebApp.Models.Transaction>
+
+@{
+    Layout = null;
+}
+
+<title>View Transaction History</title>
+
+@if (Model.ToList().Count > 0)
+{
+    <div class="table-responsive">
+        <table id="viewStudent" class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>TransactionID</th>
+                    <th>Date and Time of Transaction</th>
+                    <th>Transaction Amount</th>
+                    <th>UserID</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.TransactionsID.ToString()</td>
+                        <td>@item.TransactionsDateTime</td>
+                        <td>@item.TransactionAmount</td>
+                        <td>@item.UserID</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <span style="color:red">No record found!</span>
+}

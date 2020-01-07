@@ -1,0 +1,27 @@
+﻿<title>PayOnly System Merchant/Admin Login</title>
+
+<form method="post" action="~/Login/MerchantLogin">
+    <fieldset class="loginFieldSet">
+        <legend>Merchant Login</legend>
+        <label>Username</label>
+        <input type="text" name="txtUserName" id="txtUserName" required /><br />
+        <label>Password</label>
+        <input type="password" name="txtPassword" id="txtPassword" required /><br />
+        <input type="submit"
+               class="myButton" value="Login" /><br /><br />
+        <span style="color:red;">@TempData["Message"]</span>
+    </fieldset>
+</form>
+<br /><br />
+<form method="post" action="~/Login/AdminLogin">
+    <fieldset class="loginFieldSet">
+        <legend>Admin Login</legend>
+        <label>Username</label>
+        <input type="text" name="txtUserName" id="txtUserName" required /><br />
+        <label>Password</label>
+        <input type="password" name="txtPassword" id="txtPassword" required /><br />
+        <input type="submit"
+               class="myButton" value="Login" /><br /><br />
+        <span style="color:red;">@TempData["Message"]</span>
+    </fieldset>
+</form>

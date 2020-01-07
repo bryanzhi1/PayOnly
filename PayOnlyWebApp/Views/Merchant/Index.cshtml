@@ -1,0 +1,34 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Merchant Home</title>
+</head>
+<body>
+    Welcome, @ViewData["merchantname"]. Your account balance is S$@ViewData["balance"].
+
+    <form action="~/Merchant/EditDetails">
+        <br />
+        <input type="submit"
+               class="myButton" value="Edit Details" />
+    </form>
+    <br /><br />
+    <form action="~/Merchant/ChangePassword">
+        <input type="submit"
+               class="myButton" value="Change Password" />
+    </form>
+    <br /><br />
+    <form action="~/Merchant/TransactionHistory">
+        <input type="submit" value="View Transaction History" />
+</form>
+    <form action="~/Merchant/CashOut">
+        <input type="submit" value="Cash Out Balance" />
+</form>
+</body>
+</html>

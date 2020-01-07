@@ -1,0 +1,21 @@
+﻿@model PayOnlyWebApp.Models.Merchant
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+    <title>Edit Merchant Details</title>
+        <form method="post" action="~/Merchant/EditDetails">
+            @{ 
+                Merchant merchant = ViewBag.merchantDetail;
+                <p>Merchant Name: </p><input type="text" name="txtMerchantName" value="@merchant.MerchantName" required/>
+                <p>In-Charge Name: </p><input type="text" name="txtInChargeName" value="@merchant.InChargeName" required/>
+                <p>Phone Number: </p><input type="text" name="txtPhoneNumber" value="@merchant.PhoneNumber" required/>
+                <p>Address: </p><input type="text" name="txtAddress" value="@merchant.Address" required/>
+            }
+            <br /><br /><input type="submit" value="Submit Changes" />
+        </form>
+</html>
