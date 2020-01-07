@@ -137,15 +137,23 @@ namespace PayOnlyWebApp.Controllers
         [HttpPost]
         public ActionResult CashOut(IFormCollection formData)
         {
-            string bankName = formData["txtBankName"].ToString();
-            string accountName = formData["txtAccName"].ToString();
-            string accountNumber = formData["txtAccNumber"].ToString();
-            double amount = Convert.ToDouble(formData["txtAmt"]);
-            int merchantID = Convert.ToInt32(HttpContext.Session.GetString("MerchantID"));
+            if ((HttpContext.Session.GetString("MerchantID") == null))
+            {
+                return RedirectToAction("Index", "Home");
+            }
 
-            bool status = merchantContext.CashRequest(merchantID, bankName, accountName, accountNumber, amount);
+            else
+            {
+                string bankName = formData["txtBankName"].ToString();
+                string accountName = formData["txtAccName"].ToString();
+                string accountNumber = formData["txtAccNumber"].ToString();
+                double amount = Convert.ToDouble(formData["txtAmt"]);
+                int merchantID = Convert.ToInt32(HttpContext.Session.GetString("MerchantID"));
 
-            return RedirectToAction("Index", "Merchant");
+                bool status = merchantContext.CashRequest(merchantID, bankName, accountName, accountNumber, amount);
+
+                return RedirectToAction("Index", "Merchant");
+            }
         }
     }
 }
