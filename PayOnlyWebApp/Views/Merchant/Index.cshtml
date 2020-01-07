@@ -14,7 +14,7 @@
     Welcome, @ViewData["merchantname"]. Your account balance is S$@ViewData["balance"].
 
     <form action="~/Merchant/EditDetails">
-        <br />
+        <br /><br />
         <input type="submit"
                class="myButton" value="Edit Details" />
     </form>
@@ -26,9 +26,14 @@
     <br /><br />
     <form action="~/Merchant/TransactionHistory">
         <input type="submit" value="View Transaction History" />
+        <br /><br />
 </form>
     <form action="~/Merchant/CashOut">
         <input type="submit" value="Cash Out Balance" />
+</form>
+    <br /><br />
+    <form action="~/Merchant/LogOut">
+    <input type="submit" value="Log Out" />
 </form>
 </body>
 </html>

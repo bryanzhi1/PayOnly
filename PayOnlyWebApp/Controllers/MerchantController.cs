@@ -155,5 +155,19 @@ namespace PayOnlyWebApp.Controllers
                 return RedirectToAction("Index", "Merchant");
             }
         }
+
+        public IActionResult LogOut()
+        {
+            if ((HttpContext.Session.GetString("MerchantID") == null))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            else
+            {
+                HttpContext.Session.Clear();
+                return RedirectToAction("Index", "Home");
+            }
+        }
     }
 }
