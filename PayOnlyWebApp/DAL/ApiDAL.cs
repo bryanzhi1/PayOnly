@@ -118,7 +118,7 @@ namespace PayOnlyWebApp.DAL
 
             return true;
         }
-
+        
         public bool DeductUser(int UserID, double amount)
         {
             SqlCommand cmd = new SqlCommand
@@ -217,6 +217,36 @@ namespace PayOnlyWebApp.DAL
                 conn.Close();
 
                 return true;
+        }
+
+        public List<Transaction> GetTxnByUser(int userID)
+        {
+            SqlCommand cmd = new SqlCommand
+             ("SELECT * FROM Transactions WHERE UserID = @userid", conn);
+            cmd.Parameters.AddWithValue("@userid", userID);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataSet result = new DataSet();
+            conn.Open();
+            da.Fill(result, "TxnDetails");
+            conn.Close();
+
+            List<Transaction> txnlist = new List<Transaction>();
+
+            foreach (DataRow row in result.Tables["TxnDetails"].Rows)
+            {
+                txnlist.Add(
+                    new Transaction
+                    {
+                        TransactionsID = Convert.ToInt32(row["TransactionsID"]),
+                        TransactionsDateTime = Convert.ToDateTime(row["TransactionDateTime"]),
+                        TransactionAmount = Convert.ToDouble(row["TransactionAmount"]),
+                        UserID = Convert.ToInt32(row["UserID"]),
+                        MerchantID = Convert.ToInt32(row["MerchantID"])
+                    }
+                );
+            }
+
+            return txnlist;
         }
     }
 }

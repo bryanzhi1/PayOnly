@@ -17,6 +17,7 @@
             <thead>Account Name</thead>
             <thead>Amount</thead>
             <thead>Status</thead>
+            <thead>Actions</thead>
             <tbody class="thead-dark">
                 @foreach (var item in Model)
                 {
@@ -28,6 +29,7 @@
                         <td>@item.AccountNumber</td>
                         <td>@item.Amount.ToString()</td>
                         <td>@item.Status</td>
+                        <td>/**Query String**/</td>
                     </tr>
                 }
             </tbody>

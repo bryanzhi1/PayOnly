@@ -55,5 +55,18 @@ namespace PayOnlyWebApp.DAL
 
             return RequestList;
         }
+
+        public bool ModifyCashOut(int CashOutID, string Status)
+        {
+            SqlCommand cmd = new SqlCommand
+              ("UPDATE CashOutRequest SET Status='@status' WHERE CashOutID = @id", conn);
+            cmd.Parameters.AddWithValue("@status", Status);
+            cmd.Parameters.AddWithValue("@id", CashOutID);
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            conn.Close();
+
+            return true;
+        }
     }
 }

@@ -66,6 +66,16 @@ namespace PayOnlyWebApp.Controllers
             bool status = ApiContext.TopUpUser(topup);
             return Ok();
         }
+
+        //Get Transactions by User
+        [Route("GetTxnByUser/{UserId}")]
+        [HttpGet]
+        public List<Transaction> GetTxnByUser(int UserId)
+        {
+            List<Transaction> transactionlist = ApiContext.GetTxnByUser(UserId);
+            return transactionlist;
+        }
+
         // PUT: api/API/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)

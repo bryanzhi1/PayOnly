@@ -45,5 +45,26 @@ namespace PayOnlyWebApp.Controllers
                 return View(RequestList);
             }
         }
+
+        public IActionResult ModifyRequest(int CashOutID, bool Approved)
+        {
+            if (HttpContext.Session.GetString("AdminUser") == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            else
+            {
+                if (Approved == true) { 
+                    bool CashOut = adminContext.ModifyCashOut(CashOutID, "Approved"); 
+                }
+
+                else { 
+                    bool CashOut = adminContext.ModifyCashOut(CashOutID, "Rejected"); 
+                }
+
+                return RedirectToAction("ViewRequests", "Admin");
+            }
+        }
     }
 }
