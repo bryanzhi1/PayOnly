@@ -25,12 +25,10 @@ namespace PayOnlyWebApp.Controllers
 
         [Route("GetUserById/{UserId}")]
         [HttpGet]
-        public List<User> GetUserById(int UserId)
+        public User GetUserById(int UserId)
         {
             User user = ApiContext.GetUserById(UserId);
-            List<User> userlist = new List<User>();
-            userlist.Add(user);
-            return userlist;
+            return user;
         }
 
         [Route("GetUserByEmail/{email}")]

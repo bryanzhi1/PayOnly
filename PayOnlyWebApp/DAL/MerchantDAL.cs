@@ -188,5 +188,37 @@ namespace PayOnlyWebApp.DAL
 
             return true;
         }
+
+        public List<CashOutRequest> GetCashRequests(int merchantID)
+        {
+            SqlCommand cmd = new SqlCommand
+             ("SELECT * FROM CashOutRequest WHERE MerchantID = @merchantid", conn);
+            cmd.Parameters.AddWithValue("@merchantid", merchantID);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataSet result = new DataSet();
+            conn.Open();
+            da.Fill(result, "AccountDetails");
+            conn.Close();
+
+            List <CashOutRequest> requestList = new List<CashOutRequest>();
+
+            foreach (DataRow row in result.Tables["AccountDetails"].Rows)
+            {
+                requestList.Add(
+                    new CashOutRequest
+                    {
+                        CashOutID = Convert.ToInt32(row["CashOutID"]),
+                        MerchantID = Convert.ToInt32(row["MerchantID"]),
+                        BankName = row["BankName"].ToString(),
+                        AccountName = row["AccountName"].ToString(),
+                        AccountNumber = row["AccountNumber"].ToString(),
+                        Amount = Convert.ToDouble("Amount"),
+                        Status = row["Status"].ToString()
+                    }
+                    );
+            }
+
+            return requestList;
+        }
     }
 }
